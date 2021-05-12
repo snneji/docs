@@ -1,49 +1,35 @@
 ---
 title: "Knative Operator installation"
-weight: 02
+weight: 05
 type: "docs"
 showlandingtoc: "false"
 ---
 
 Knative provides a [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) to install, configure and manage Knative.
+You can install the Serving component, Eventing component, or both on your cluster.
 
 **NOTE:** The Knative Operator is still in Alpha phase. It has not been tested in a production environment, and should be used
 for development or test purposes only.
 
 ## Prerequisites
 
-- You have a cluster that uses Kubernetes v1.17 or newer.
+- You have a cluster that uses Kubernetes v1.18 or newer.
 - You have installed the `kubectl` CLI.
 - If you have only one node in your cluster, you will need at least 6 CPUs, 6 GB of memory, and 30 GB of disk storage.
 - If you have multiple nodes in your cluster, for each node you will need at least 2 CPUs, 4 GB of memory, and 20 GB of disk storage.
-- Your Kubernetes cluster must have access to the internet, since the Knative Operator must download images.
+- Your Kubernetes cluster must have access to the internet, since Kubernetes needs to be able to fetch images, such as `gcr.io/knative-releases/knative.dev/operator/cmd/operator:<version>`.
+<!--TODO: Verify these requirements-->
 - You have installed [Istio](./installing-istio.md).
 
 ## Installing the latest release
 
-You can find the release information about the Knative Operator on the [Releases page](https://github.com/knative/operator/releases).
+You can find information about the different released versions of the Knative Operator on the [Releases page](https://github.com/knative/operator/releases).
 
-To install the latest stable Operator release, enter:
+Install the latest stable Operator release:
 
 ```
 kubectl apply -f {{< artifact org="knative" repo="operator" file="operator.yaml" >}}
 ```
-
-## Installing from source
-
-You can install the Knative Operator from the source code using the [ko](https://github.com/google/ko) build tool.
-
-1. Download the source code:
-
-    ```
-    git clone https://github.com/knative/operator.git
-    ```
-
-1. Install the Operator in the root directory of the source:
-
-    ```
-    ko apply -f config/
-    ```
 
 ## Verify your installation
 
@@ -301,12 +287,6 @@ The following commands install Contour and enable its Knative integration.
    kubectl apply --filename {{< artifact repo="net-contour" file="contour.yaml" >}}
    ```
 
-1. Install the Knative Contour controller:
-
-   ```bash
-   kubectl apply --filename {{< artifact repo="net-contour" file="net-contour.yaml" >}}
-   ```
-
 1. To configure Knative Serving to use Contour, apply the content of the Serving CR as below:
 
    ```bash
@@ -317,6 +297,9 @@ The following commands install Contour and enable its Knative integration.
      name: knative-serving
      namespace: knative-serving
    spec:
+     ingress:
+       contour:
+         enabled: true
      config:
        network:
          ingress.class: "contour.ingress.networking.knative.dev"
@@ -372,12 +355,10 @@ The following commands install Gloo and enable its Knative integration.
    metadata:
      name: knative-serving
      namespace: knative-serving
-   spec:
-     ingress:
-       gloo:
-         enabled: true
    EOF
    ```
+
+   There is no need to configure the ingress class to use the gloo.
 
 1. Fetch the External IP or CNAME:
 
@@ -429,12 +410,6 @@ The following commands install Kong and enable its Knative integration.
 
 The following commands install Kourier and enable its Knative integration.
 
-1. Install the Knative Kourier controller:
-
-   ```bash
-   kubectl apply --filename {{< artifact repo="net-kourier" file="kourier.yaml" >}}
-   ```
-
 1. To configure Knative Serving to use Kourier, apply the content of the Serving CR as below:
 
    ```bash
@@ -445,6 +420,9 @@ The following commands install Kourier and enable its Knative integration.
      name: knative-serving
      namespace: knative-serving
    spec:
+     ingress:
+       kourier:
+         enabled: true
      config:
        network:
          ingress.class: "kourier.ingress.networking.knative.dev"
@@ -722,43 +700,6 @@ If Knative Eventing is successfully installed, you should see:
 ```
 NAME               VERSION             READY   REASON
 knative-eventing   <version number>    True
-```
-
-## Uninstall Knative
-
-### Removing the Knative Serving component
-
-Remove the Knative Serving CR:
-
-```
-kubectl delete KnativeServing knative-serving -n knative-serving
-```
-
-### Removing Knative Eventing component
-
-Remove the Knative Eventing CR:
-
-```
-kubectl delete KnativeEventing knative-eventing -n knative-eventing
-```
-
-Knative operator prevents unsafe removal of Knative resources. Even if the Knative Serving and Knative Eventing CRs are
-successfully removed, all the CRDs in Knative are still kept in the cluster. All your resources relying on Knative CRDs
-can still work.
-
-### Removing the Knative Operator:
-
-If you have installed Knative using the Release page, remove the operator using the following command:
-
-```
-kubectl delete -f {{< artifact org="knative" repo="operator" file="operator.yaml" >}}
-```
-
-If you have installed Knative from source, uninstall it using the following command while in the root directory
-for the source:
-
-```
-ko delete -f config/
 ```
 
 ## What's next
