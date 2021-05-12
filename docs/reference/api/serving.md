@@ -128,7 +128,9 @@ Defaults to <code>ReachabilityUnknown</code></p>
 <td>
 <code>protocolType</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/networking/pkg/apis/networking#ProtocolType">
 knative.dev/networking/pkg/apis/networking.ProtocolType
+</a>
 </em>
 </td>
 <td>
@@ -201,7 +203,9 @@ MetricSpec
 <td>
 <code>stableWindow</code><br/>
 <em>
+<a href="https://golang.org/pkg/time/#Duration">
 time.Duration
+</a>
 </em>
 </td>
 <td>
@@ -212,7 +216,9 @@ time.Duration
 <td>
 <code>panicWindow</code><br/>
 <em>
+<a href="https://golang.org/pkg/time/#Duration">
 time.Duration
+</a>
 </em>
 </td>
 <td>
@@ -269,7 +275,9 @@ MetricStatus
 <td>
 <code>stableWindow</code><br/>
 <em>
+<a href="https://golang.org/pkg/time/#Duration">
 time.Duration
+</a>
 </em>
 </td>
 <td>
@@ -280,7 +288,9 @@ time.Duration
 <td>
 <code>panicWindow</code><br/>
 <em>
+<a href="https://golang.org/pkg/time/#Duration">
 time.Duration
+</a>
 </em>
 </td>
 <td>
@@ -320,7 +330,9 @@ string
 <td>
 <code>Status</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Status">
 knative.dev/pkg/apis/duck/v1.Status
+</a>
 </em>
 </td>
 <td>
@@ -394,7 +406,9 @@ Defaults to <code>ReachabilityUnknown</code></p>
 <td>
 <code>protocolType</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/networking/pkg/apis/networking#ProtocolType">
 knative.dev/networking/pkg/apis/networking.ProtocolType
+</a>
 </em>
 </td>
 <td>
@@ -423,7 +437,9 @@ knative.dev/networking/pkg/apis/networking.ProtocolType
 <td>
 <code>Status</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Status">
 knative.dev/pkg/apis/duck/v1.Status
+</a>
 </em>
 </td>
 <td>
@@ -707,7 +723,7 @@ Resource Types:
 Users create new Revisions by updating the Configuration&rsquo;s spec.
 The &ldquo;latest created&rdquo; revision&rsquo;s name is available under status, as is the
 &ldquo;latest ready&rdquo; revision&rsquo;s name.
-See also: <a href="https://github.com/knative/serving/blob/master/docs/spec/overview.md#configuration">https://github.com/knative/serving/blob/master/docs/spec/overview.md#configuration</a></p>
+See also: <a href="https://github.com/knative/serving/blob/main/docs/spec/overview.md#configuration">https://github.com/knative/serving/blob/main/docs/spec/overview.md#configuration</a></p>
 </p>
 <table>
 <thead>
@@ -801,7 +817,7 @@ ConfigurationStatus
 <p>Revision is an immutable snapshot of code and configuration.  A revision
 references a container image. Revisions are created by updates to a
 Configuration.</p>
-<p>See also: <a href="https://github.com/knative/serving/blob/master/docs/spec/overview.md#revision">https://github.com/knative/serving/blob/master/docs/spec/overview.md#revision</a></p>
+<p>See also: <a href="https://github.com/knative/serving/blob/main/docs/spec/overview.md#revision">https://github.com/knative/serving/blob/main/docs/spec/overview.md#revision</a></p>
 </p>
 <table>
 <thead>
@@ -927,7 +943,7 @@ Some of the Revisions a Route distributes traffic over may be specified by
 referencing the Configuration responsible for creating them; in these cases
 the Route is additionally responsible for monitoring the Configuration for
 &ldquo;latest ready revision&rdquo; changes, and smoothly rolling out latest revisions.
-See also: <a href="https://github.com/knative/serving/blob/master/docs/spec/overview.md#route">https://github.com/knative/serving/blob/master/docs/spec/overview.md#route</a></p>
+See also: <a href="https://github.com/knative/serving/blob/main/docs/spec/overview.md#route">https://github.com/knative/serving/blob/main/docs/spec/overview.md#route</a></p>
 </p>
 <table>
 <thead>
@@ -1030,7 +1046,7 @@ underlying Routes and Configurations (much as a kubernetes Deployment
 orchestrates ReplicaSets), and its usage is optional but recommended.</p>
 <p>The Service&rsquo;s controller will track the statuses of its owned Configuration
 and Route, reflecting their statuses and conditions as its own.</p>
-<p>See also: <a href="https://github.com/knative/serving/blob/master/docs/spec/overview.md#service">https://github.com/knative/serving/blob/master/docs/spec/overview.md#service</a></p>
+<p>See also: <a href="https://github.com/knative/serving/blob/main/docs/spec/overview.md#service">https://github.com/knative/serving/blob/main/docs/spec/overview.md#service</a></p>
 </p>
 <table>
 <thead>
@@ -1191,7 +1207,9 @@ RevisionTemplateSpec
 <td>
 <code>Status</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Status">
 knative.dev/pkg/apis/duck/v1.Status
+</a>
 </em>
 </td>
 <td>
@@ -1383,7 +1401,9 @@ layer will wait for a request delivered to a container to begin replying
 <td>
 <code>Status</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Status">
 knative.dev/pkg/apis/duck/v1.Status
+</a>
 </em>
 </td>
 <td>
@@ -1460,6 +1480,30 @@ The digests are resolved during the creation of Revision.
 ContainerStatuses holds the container name and image digests
 for both serving and non serving containers.
 ref: <a href="http://bit.ly/image-digests">http://bit.ly/image-digests</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>actualReplicas</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ActualReplicas reflects the amount of ready pods running this revision.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>desiredReplicas</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DesiredReplicas reflects the desired amount of pods running this revision.</p>
 </td>
 </tr>
 </tbody>
@@ -1612,7 +1656,9 @@ revisions and configurations.</p>
 <td>
 <code>Status</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Status">
 knative.dev/pkg/apis/duck/v1.Status
+</a>
 </em>
 </td>
 <td>
@@ -1660,7 +1706,9 @@ other types can readily consume these fields via duck typing.</p>
 <td>
 <code>url</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis#URL">
 knative.dev/pkg/apis.URL
+</a>
 </em>
 </td>
 <td>
@@ -1673,7 +1721,9 @@ It generally has the form http[s]://{route-name}.{route-namespace}.{cluster-leve
 <td>
 <code>address</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Addressable">
 knative.dev/pkg/apis/duck/v1.Addressable
+</a>
 </em>
 </td>
 <td>
@@ -1808,7 +1858,9 @@ defaults).</p>
 <td>
 <code>Status</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Status">
 knative.dev/pkg/apis/duck/v1.Status
+</a>
 </em>
 </td>
 <td>
@@ -1950,7 +2002,9 @@ that particular Revision or Configuration</p>
 <td>
 <code>url</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis#URL">
 knative.dev/pkg/apis.URL
+</a>
 </em>
 </td>
 <td>
@@ -2041,7 +2095,9 @@ More info: <a href="https://github.com/kubernetes/community/blob/master/contribu
 <td>
 <code>ref</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#KReference">
 knative.dev/pkg/apis/duck/v1.KReference
+</a>
 </em>
 </td>
 <td>
@@ -2129,7 +2185,9 @@ string
 <td>
 <code>ref</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#KReference">
 knative.dev/pkg/apis/duck/v1.KReference
+</a>
 </em>
 </td>
 <td>
@@ -2164,7 +2222,9 @@ Knative Routes, and by Kubernetes Services.</p>
 <td>
 <code>Status</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Status">
 knative.dev/pkg/apis/duck/v1.Status
+</a>
 </em>
 </td>
 <td>
@@ -2177,7 +2237,9 @@ knative.dev/pkg/apis/duck/v1.Status
 <td>
 <code>url</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis#URL">
 knative.dev/pkg/apis.URL
+</a>
 </em>
 </td>
 <td>
@@ -2189,7 +2251,9 @@ knative.dev/pkg/apis.URL
 <td>
 <code>address</code><br/>
 <em>
+<a href="https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Addressable">
 knative.dev/pkg/apis/duck/v1.Addressable
+</a>
 </em>
 </td>
 <td>
@@ -2202,5 +2266,5 @@ knative.dev/pkg/apis/duck/v1.Addressable
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>b9576f56c</code>.
+on git commit <code>813aa6596</code>.
 </em></p>
