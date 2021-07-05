@@ -42,7 +42,7 @@ Follow the procedure for the channel of your choice:
 === "Apache Kafka Channel"
 
     1. First,
-      [Install Apache Kafka for Kubernetes](../../../../eventing/samples/kafka)
+      [Install Apache Kafka for Kubernetes](../../../../eventing/samples/kafka/README.md)
 
     1. Then install the Apache Kafka Channel:
 
@@ -54,7 +54,7 @@ Follow the procedure for the channel of your choice:
 
         !!! tip
             To learn more about the Apache Kafka channel, try
-            [our sample](../../../../eventing/samples/kafka/channel/)
+            [our sample](../../../../eventing/samples/kafka/channel/README.md)
 
 === "Google Cloud Pub/Sub Channel"
 
@@ -115,7 +115,7 @@ Follow the procedure for the broker of your choice:
         kubectl apply -f {{ artifact(org="knative-sandbox",repo="eventing-kafka-broker",file="eventing-kafka-broker.yaml")}}
         ```
 
-    For more information, see the [Kafka broker](../../../../eventing/broker/kafka-broker/) documentation.
+    For more information, see the [Kafka broker](../../../../eventing/broker/kafka-broker/README.md) documentation.
 
 === "MT-Channel-based"
 
@@ -261,7 +261,7 @@ The tabs below expand to show instructions for installing each Eventing extensio
     configuration yet.
 
     To learn more about the Github source, try
-    [our sample](../../../../eventing/sources/github-source/)
+    [our sample](../../../../developer/eventing/sources/github-source/README.md)
 
 === "Apache Kafka Source"
 
@@ -272,7 +272,7 @@ The tabs below expand to show instructions for installing each Eventing extensio
     ```
 
     To learn more about the Apache Kafka source, try
-    [our sample](../../../../eventing/sources/kafka-source)
+    [our sample](../../../../developer/eventing/sources/kafka-source/README.md)
 
 
 === "GCP Sources"
@@ -285,16 +285,16 @@ The tabs below expand to show instructions for installing each Eventing extensio
     ```
 
     To learn more about the Cloud Pub/Sub source, try
-    [our sample](../../../../eventing/sources/cloud-pubsub-source).
+    [our sample](../../../../developer/eventing/sources/cloud-pubsub-source/README.md).
 
     To learn more about the Cloud Storage source, try
-    [our sample](../../../../eventing/sources/cloud-storage-source).
+    [our sample](../../../../developer/eventing/sources/cloud-storage-source/README.md).
 
     To learn more about the Cloud Scheduler source, try
-    [our sample](../../../../eventing/sources/cloud-scheduler-source).
+    [our sample](../../../../developer/eventing/sources/cloud-scheduler-source/README.md).
 
     To learn more about the Cloud Audit Logs source, try
-    [our sample](../../../../eventing/sources/cloud-audit-logs-source).
+    [our sample](../../../../developer/eventing/sources/cloud-audit-logs-source/README.md).
 
 
 === "Apache CouchDB Source"
