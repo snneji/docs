@@ -22,10 +22,9 @@ serve a Knative Service at this domain.
 
 ## Procedure
 
-1. Create a `DomainMapping` object by entering the following command:
+1. Create a `DomainMapping` object by creating a YAML file using the template below:
 
     ```yaml
-    kubectl apply -f - <<EOF
     apiVersion: serving.knative.dev/v1alpha1
     kind: DomainMapping
     metadata:
@@ -36,7 +35,6 @@ serve a Knative Service at this domain.
         name: <service-name>
         kind: Service
         apiVersion: serving.knative.dev/v1
-    EOF
     ```
     Where:
 
@@ -48,4 +46,11 @@ serve a Knative Service at this domain.
 
         You can also map to other targets as long as they conform to the Addressable contract and their resolved URL is of the form `{name}.{namespace}.{clusterdomain}`, where `{name}` and `{namespace}` are the name and namespace of a Kubernetes service, and `{clusterdomain}`is the cluster domain. Examples of objects that conform to this contract include Knative Services, Routes, and Kubernetes services.
 
+1. Apply the YAML file by running the command:
+
+    ```bash
+    kubectl apply --filename <filename>.yaml
+    ```
+    Where `<filename>` is the name of the file you created in the previous step.
+    
 1. Point the domain name to the IP address of your Knative cluster. Details of this step differ depending on your domain registrar.

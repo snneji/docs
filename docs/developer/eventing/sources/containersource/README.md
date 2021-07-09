@@ -64,8 +64,9 @@ Service, which dumps incoming messages into its log, by running the command:
 
     === "YAML"
 
+    1. Create a YAML file using the example below:
+
         ```yaml
-        kubectl -n containersource-example apply -f - <<EOF
         apiVersion: apps/v1
         kind: Deployment
         metadata:
@@ -96,8 +97,15 @@ Service, which dumps incoming messages into its log, by running the command:
           - protocol: TCP
             port: 80
             targetPort: 8080
-        EOF
         ```
+
+    1. Apply the YAML file by running the command:
+
+        ```bash
+        kubectl apply --filename <filename>.yaml
+        ```
+        Where `<filename>` is the name of the file you created in the previous step.
+
 
 1. Create a concrete ContainerSource with specific arguments and environment
 settings by running the command:
@@ -119,8 +127,9 @@ settings by running the command:
 
     === "YAML"
 
+    1. Create a YAML file using the template below:
+
         ```yaml
-        kubectl -n <namespace> apply -f - <<EOF
         apiVersion: sources.knative.dev/v1
         kind: ContainerSource
         metadata:
@@ -141,7 +150,6 @@ settings by running the command:
               apiVersion: v1
               kind: Service
               name: <sink>
-        EOF
         ```
         Where:
 
@@ -158,6 +166,13 @@ settings by running the command:
 
         For more information about the fields you can configure for the ContainerSource
         object, see [ContainerSource Reference](reference.md).
+
+    1. Apply the YAML file by running the command:
+
+        ```bash
+        kubectl apply --filename <filename>.yaml
+        ```
+        Where `<filename>` is the name of the file you created in the previous step.
 
     !!! note
         Arguments and environment variables are set and are passed to the container.

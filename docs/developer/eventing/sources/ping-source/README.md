@@ -34,11 +34,10 @@ The following example shows how you can configure a PingSource as an event sourc
 
 1. To verify that the PingSource is working correctly, create an example sink in the `pingsource-example` namespace that dumps incoming messages to a log, by entering the command:
 
-    
-=== "kubectl"
+
+=== "YAML"
 
     ```bash
-    kubectl -n pingsource-example apply -f - << EOF
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -69,7 +68,6 @@ The following example shows how you can configure a PingSource as an event sourc
       - protocol: TCP
         port: 80
         targetPort: 8080
-    EOF
     ```
 
 
@@ -78,7 +76,7 @@ The following example shows how you can configure a PingSource as an event sourc
 
 1. Create a PingSource that sends an event containing `{"message": "Hello world!"}` every minute, by entering the command:
 
-    
+
 === "YAML"
 
     ```bash
@@ -142,7 +140,7 @@ The following example shows how you can configure a PingSource as an event sourc
 1. View the logs for the `event-display` event consumer by
 entering the following command:
 
-    
+
 === "kubectl"
 
     ```bash
@@ -204,7 +202,7 @@ entering the following command:
 
 1. Optional: You can also delete the PingSource instance only by entering the following command:
 
-    
+
 === "kubectl"
 
     ```bash
@@ -240,7 +238,7 @@ entering the following command:
 
 1. Optional: Delete the `event-display` service:
 
-    
+
 === "kubectl"
 
     ```bash
@@ -253,7 +251,3 @@ entering the following command:
     ```bash
     kn service delete event-display
     ```
-
-
-
-
