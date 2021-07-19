@@ -116,60 +116,60 @@ command:
 1. Create the ApiServerSource object:
 
     === "kn"
-    - To create the ApiServerSource, run the command:
+        - To create the ApiServerSource, run the command:
 
-        ```bash
-        kn source apiserver create <apiserversource> \
-          --namespace <namespace> \
-          --mode "Resource" \
-          --resource "Event:v1" \
-          --service-account <service-account> \
-          --sink <sink>
-        ```
-        Where:
+            ```bash
+            kn source apiserver create <apiserversource> \
+              --namespace <namespace> \
+              --mode "Resource" \
+              --resource "Event:v1" \
+              --service-account <service-account> \
+              --sink <sink>
+            ```
+            Where:
 
-        - `<apiserversource>` is the name of the source that you want to create.
-        - `<namespace>` is the name of the namespace that you created in step 1 above.
-        - `<service-account>` is the name of the ServiceAccount that you created in step 2 above.
-        - `<sink>` is the name of the PodSpecable object that you want to use as a sink.
-        A PodSpecable is an object that describes a PodSpec.
+            - `<apiserversource>` is the name of the source that you want to create.
+            - `<namespace>` is the name of the namespace that you created in step 1 above.
+            - `<service-account>` is the name of the ServiceAccount that you created in step 2 above.
+            - `<sink>` is the name of the PodSpecable object that you want to use as a sink.
+            A PodSpecable is an object that describes a PodSpec.
 
     === "YAML"
-    1. Create a YAML file using the template below:
+        1. Create a YAML file using the template below:
 
-        ```yaml
-        apiVersion: sources.knative.dev/v1
-        kind: ApiServerSource
-        metadata:
-         name: <apiserversource>
-         namespace: <namespace>
-        spec:
-         serviceAccountName: <service-account>
-         mode: <event-mode>
-         resources:
-           - apiVersion: v1
-             kind: Event
-         sink:
-           ref:
-             apiVersion: v1
-             kind: <sink-kind>
-             name: <sink-name>
-        ```
-        Where:
+            ```yaml
+            apiVersion: sources.knative.dev/v1
+            kind: ApiServerSource
+            metadata:
+             name: <apiserversource>
+             namespace: <namespace>
+            spec:
+             serviceAccountName: <service-account>
+             mode: <event-mode>
+             resources:
+               - apiVersion: v1
+                 kind: Event
+             sink:
+               ref:
+                 apiVersion: v1
+                 kind: <sink-kind>
+                 name: <sink-name>
+            ```
+            Where:
 
-        - `<apiserversource>` is the name of the source that you want to create.
-        - `<namespace>` is the name of the namespace that you created in step 1 above.
-        - `<service-account>` is the name of the ServiceAccount that you created in step 2 above.
-        - `<event-mode>` is either `Resource` or `Reference`. If set to `Resource`, the event payload contains the entire resource that the event is for. If set to `Reference`, the event payload only contains a reference to the resource that the event is for. The default is `Reference`.
-        - `<sink-kind>` is any supported PodSpecable object that you want to use as a sink, for example, `Service` or `Deployment`. A PodSpecable is an object that describes a PodSpec.
-        - `<sink-name>` is the name of your sink.
+            - `<apiserversource>` is the name of the source that you want to create.
+            - `<namespace>` is the name of the namespace that you created in step 1 above.
+            - `<service-account>` is the name of the ServiceAccount that you created in step 2 above.
+            - `<event-mode>` is either `Resource` or `Reference`. If set to `Resource`, the event payload contains the entire resource that the event is for. If set to `Reference`, the event payload only contains a reference to the resource that the event is for. The default is `Reference`.
+            - `<sink-kind>` is any supported PodSpecable object that you want to use as a sink, for example, `Service` or `Deployment`. A PodSpecable is an object that describes a PodSpec.
+            - `<sink-name>` is the name of your sink.
 
-    1. Apply the YAML file by running the command:
+        1. Apply the YAML file by running the command:
 
-        ```bash
-        kubectl apply --filename <filename>.yaml
-        ```
-        Where `<filename>` is the name of the file you created in the previous step.
+            ```bash
+            kubectl apply --filename <filename>.yaml
+            ```
+            Where `<filename>` is the name of the file you created in the previous step.
 
 ## Verify the ApiServerSource object
 

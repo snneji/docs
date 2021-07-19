@@ -51,19 +51,19 @@ the following example heartbeats event source by running the commands:
     For example, `containersource-example`.
 
 1. Create a sink. If you do not already have a sink, you can use the following Knative
-Service, which dumps incoming messages into its log, by running the command:
+Service, which dumps incoming messages into its log:
 
     !!! note
         To create a Knative service you must have Knative Serving installed on your cluster.
 
     === "kn"
+    - To create a sink, run the command:
 
         ```bash
         kn service create event-display --port 8080 --image gcr.io/knative-releases/knative.dev/eventing/cmd/event_display
         ```
 
     === "YAML"
-
     1. Create a YAML file using the example below:
 
         ```yaml
@@ -107,72 +107,71 @@ Service, which dumps incoming messages into its log, by running the command:
         Where `<filename>` is the name of the file you created in the previous step.
 
 
-1. Create a concrete ContainerSource with specific arguments and environment
-settings by running the command:
+1. Create a concrete ContainerSource with specific arguments and environment settings:
 
     === "kn"
+        - To create the ContainerSource, run the command:
 
-        ```bash
-        kn source container create <name> --image <image-uri> --sink <sink>
-        ```
-        Where:
+            ```bash
+            kn source container create <name> --image <image-uri> --sink <sink>
+            ```
+            Where:
 
-        - `<name>` is the name you want for your ContainerSource object,
-        for example, `test-heartbeats`.
-        - `<image-uri>` corresponds to the image URI you built and published
-        in step 1, for example, `gcr.io/[gcloud-project]/knative.dev/eventing/cmd/heartbeats`.
-        - `<sink>` is the name of your sink, for example `<event-display>`.
+            - `<name>` is the name you want for your ContainerSource object,
+            for example, `test-heartbeats`.
+            - `<image-uri>` corresponds to the image URI you built and published
+            in step 1, for example, `gcr.io/[gcloud-project]/knative.dev/eventing/cmd/heartbeats`.
+            - `<sink>` is the name of your sink, for example `<event-display>`.
 
-        For a list of available options, see the [Knative client documentation](https://github.com/knative/client/blob/main/docs/cmd/kn_source_container_create.md#kn-source-container-create).
+            For a list of available options, see the [Knative client documentation](https://github.com/knative/client/blob/main/docs/cmd/kn_source_container_create.md#kn-source-container-create).
 
     === "YAML"
+        1. Create a YAML file using the template below:
 
-    1. Create a YAML file using the template below:
-
-        ```yaml
-        apiVersion: sources.knative.dev/v1
-        kind: ContainerSource
-        metadata:
-          name: <containersource-name>
-        spec:
-          template:
+            ```yaml
+            apiVersion: sources.knative.dev/v1
+            kind: ContainerSource
+            metadata:
+              name: <containersource-name>
             spec:
-              containers:
-                - image: <event-source-image-uri>
-                  name: <container-name>
-                  env:
-                    - name: POD_NAME
-                      value: "<pod-name>"
-                    - name: POD_NAMESPACE
-                      value: "<pod-namespace>"
-          sink:
-            ref:
-              apiVersion: v1
-              kind: Service
-              name: <sink>
-        ```
-        Where:
+              template:
+                spec:
+                  containers:
+                    - image: <event-source-image-uri>
+                      name: <container-name>
+                      env:
+                        - name: POD_NAME
+                          value: "<pod-name>"
+                        - name: POD_NAMESPACE
+                          value: "<pod-namespace>"
+              sink:
+                ref:
+                  apiVersion: v1
+                  kind: Service
+                  name: <sink>
+            ```
+            Where:
 
-        - `<namespace>` is the namespace you created for your ContainerSource,
-        for example, `containersource-example`.
-        - `<containersource-name>` is the name you want for your ContainerSource,
-        for example, `test-heartbeats`.
-        - `<event-source-image-uri>` corresponds to the image URI you built and published
-        in step 1, for example, `gcr.io/[gcloud-project]/knative.dev/eventing/cmd/heartbeats`.
-        - `<container-name>` is the name of your event source, for example, `heartbeats`.
-        - `<pod-name>` is the name of the Pod that the container runs in, for example, `mypod`.
-        - `<pod-namespace>` is the namespace that the Pod runs in, for example, `event-test`.
-        - `<sink>` is the name of your sink, for example, `event-display`.
+            - `<namespace>` is the namespace you created for your ContainerSource,
+            for example, `containersource-example`.
+            - `<containersource-name>` is the name you want for your ContainerSource,
+            for example, `test-heartbeats`.
+            - `<event-source-image-uri>` corresponds to the image URI you built and published
+            in step 1, for example, `gcr.io/[gcloud-project]/knative.dev/eventing/cmd/heartbeats`.
+            - `<container-name>` is the name of your event source, for example, `heartbeats`.
+            - `<pod-name>` is the name of the Pod that the container runs in, for example, `mypod`.
+            - `<pod-namespace>` is the namespace that the Pod runs in, for example, `event-test`.
+            - `<sink>` is the name of your sink, for example, `event-display`.
 
-        For more information about the fields you can configure for the ContainerSource
-        object, see [ContainerSource Reference](reference.md).
+            For more information about the fields you can configure for the ContainerSource
+            object, see [ContainerSource Reference](reference.md).
 
-    1. Apply the YAML file by running the command:
+        1. Apply the YAML file by running the command:
 
-        ```bash
-        kubectl apply --filename <filename>.yaml
-        ```
-        Where `<filename>` is the name of the file you created in the previous step.
+            ```bash
+            kubectl apply --filename <filename>.yaml
+            ```
+            Where `<filename>` is the name of the file you created in the previous step.
 
     !!! note
         Arguments and environment variables are set and are passed to the container.
